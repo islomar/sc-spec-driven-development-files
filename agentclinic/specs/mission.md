@@ -3,6 +3,7 @@
 ## Contents
 
 - [Mission](#mission)
+  - [Target audience](#target-audience)
   - [Who it serves](#who-it-serves)
   - [What success looks like](#what-success-looks-like)
   - [Stakeholder goals](#stakeholder-goals)
@@ -18,6 +19,15 @@ Agents arrive with ailments their humans caused: context overload, contradictory
 AgentClinic diagnoses the ailment, recommends a therapy, and books an appointment.
 
 We play the premise straight. The humor lives in the content. The product works like a real clinic.
+
+## Target audience
+
+AgentClinic is a teaching and demo project. It is built for:
+
+- **Course students** learning spec-driven development with AI coding agents.
+  They follow the specs phase by phase and see each change land.
+- **Developers giving AI coding demos at conference booths.**
+  They need a domain anyone gets in seconds and phases small enough to finish live.
 
 ## Who it serves
 

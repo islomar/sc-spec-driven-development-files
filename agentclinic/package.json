@@ -2,12 +2,20 @@
   "name": "agentclinic",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsx watch src/index.tsx",
+    "start": "node dist/index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@hono/node-server": "^2.1.5",
+    "hono": "^4.13.14"
+  },
   "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
     "typescript": "^5.5.3"
   },
   "private": true

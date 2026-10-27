@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents** *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+## Contents
 
 - [Roadmap](#roadmap)
   - [Phase 1: Hello clinic](#phase-1-hello-clinic)
@@ -51,7 +51,7 @@ Add seed data for ailments. Show `/ailments` and `/ailments/:id`. Link each agen
 
 ## Phase 7: Persistent storage
 
-Choose a storage engine and move the repository module from seed data to it. Existing pages and tests keep working unchanged.
+Add SQLite with `better-sqlite3`, the first migration, and a seed script. Move the repository module from seed data to SQLite. Existing pages and tests keep working unchanged.
 
 ## Phase 8: Therapy list and detail
 

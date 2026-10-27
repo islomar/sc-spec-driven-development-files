@@ -23,6 +23,7 @@
 | Web framework | Hono |
 | Rendering | Server-side HTML with Hono JSX |
 | Styling | Plain CSS with custom properties, one stylesheet |
+| Database | SQLite, through `better-sqlite3`. Plain SQL, no ORM. |
 | Client JavaScript | None by default. Add small progressive enhancements only where a feature needs them. |
 | Testing | Vitest, using Hono's `app.request()` for route tests |
 | Dev runner | `tsx` in watch mode |
@@ -57,7 +58,22 @@ Target the current versions of Chrome, Firefox, Safari, and Edge. Support light 
 
 ## Data
 
-Phase 1 to phase 6 of the roadmap use in-memory seed data behind a repository module. Persistent storage is an open decision. The repository module keeps that decision isolated from routes and views.
+AgentClinic stores data in SQLite.
+
+- The database is one file, `data/agentclinic.db`. Git ignores it.
+- `better-sqlite3` is the driver. Its calls are synchronous, which keeps the code short.
+- Schema changes live in numbered SQL files in `migrations/`. The app applies new ones at startup.
+- A seed script loads sample agents, ailments, and therapies.
+- Tests use an in-memory database (`:memory:`). Each test starts from a fresh schema.
+- Routes and views never write SQL. They call a repository module, and only the repository module talks to the database.
+
+Phase 1 to phase 6 of the roadmap use in-memory seed data behind the repository module. Phase 7 moves the repository module to SQLite.
+
+Rejected:
+
+- **`node:sqlite`**: built into Node.js and needs no extra package, but still experimental on Node.js 22.
+- **An ORM such as Drizzle or Prisma**: adds a schema language and code generation. Plain SQL is easier to follow in a demo.
+- **PostgreSQL**: needs a running server. SQLite works with no setup on a student laptop or a booth machine.
 
 ## Quality rules
 

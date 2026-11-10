@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-## Contents
+**Table of Contents** *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Roadmap](#roadmap)
   - [Phase 1: Hello clinic](#phase-1-hello-clinic)

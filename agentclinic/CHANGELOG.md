@@ -11,10 +11,11 @@
 
 # Changelog
 
-<!-- changelog: last-commit f2b77e5c022185b06c568911d049a23661d0fdd7 -->
+<!-- changelog: last-commit d8f3b49e8581fcb6fe430be1442b86ecdc23c83d -->
 
 ## 2026-11-13
 
+- Merge navigation and the agent pages into roadmap phase 2, and renumber later phases
 - Keep changelog dates in order when an older commit arrives from a merge
 - Add a `/changelog` skill that keeps this changelog up to date
 - Record the lesson 08 prompts

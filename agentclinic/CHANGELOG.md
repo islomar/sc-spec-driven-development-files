@@ -10,10 +10,13 @@
 
 # Changelog
 
-<!-- changelog: last-commit 833bfc073a76a29315fe633693130d81f8fb42c2 -->
+<!-- changelog: last-commit bff13225291a0613bfdc7657dca5f6babf8bd4b1 -->
 
 ## 2026-11-13
 
+- Add a `/changelog` skill that keeps this changelog up to date
+- Record the lesson 08 prompts
+- Make every page responsive, from 320px wide up
 - Add Vitest tests for the home page, the stylesheet, and unknown routes, run with `npm test`
 - Add a shared layout with header, main, and footer, and a stylesheet
 

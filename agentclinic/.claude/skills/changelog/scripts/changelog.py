@@ -76,26 +76,26 @@ def update(text, commits, head):
     marker_index = next(i for i, line in enumerate(lines) if MARKER_RE.match(line))
     lines[marker_index] = marker(head)
 
-    first_heading = next(
-        (i for i, line in enumerate(lines) if DATE_HEADING_RE.match(line)), None
-    )
-    groups = group_by_date(commits)
-
-    # New commits on the newest recorded date go to the top of that section.
-    if first_heading is not None:
-        top_date = DATE_HEADING_RE.match(lines[first_heading]).group(1)
-        if top_date in groups:
-            subjects = groups.pop(top_date)
-            insert_at = first_heading + 2  # after the heading and its blank line
+    for date, subjects in group_by_date(commits).items():
+        headings = [
+            (i, DATE_HEADING_RE.match(line).group(1))
+            for i, line in enumerate(lines)
+            if DATE_HEADING_RE.match(line)
+        ]
+        existing = next((i for i, d in headings if d == date), None)
+        if existing is not None:
+            # Add to the top of the date's section, after the heading and its blank line.
+            insert_at = existing + 2
             lines[insert_at:insert_at] = [f"- {s}" for s in subjects]
-
-    new_sections = []
-    for date, subjects in groups.items():
-        new_sections += render_section(date, subjects)
-    insert_at = first_heading if first_heading is not None else len(lines)
-    if first_heading is None and lines and lines[-1] != "":
-        new_sections.insert(0, "")
-    lines[insert_at:insert_at] = new_sections
+            continue
+        # A new date goes before the first older date, so headings stay newest first.
+        older = next((i for i, d in headings if d < date), None)
+        section = render_section(date, subjects)
+        if older is None:
+            if lines and lines[-1] != "":
+                section.insert(0, "")
+            older = len(lines)
+        lines[older:older] = section
     return "\n".join(lines).rstrip("\n") + "\n"
 
 

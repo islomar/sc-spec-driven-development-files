@@ -69,7 +69,8 @@ The project root is the directory that holds `.claude/`.
 
 - Date headings are `## YYYY-MM-DD`, newest first, using the commit date.
 - Inside a date, bullets are newest first.
-- New commits on the newest recorded date go to the top of that date's section.
+- New commits on a recorded date go to the top of that date's section.
+- A new date gets its own section in date order, even when older than the newest heading, for example after merging an older commit from `main`.
 
 ## What the script includes
 

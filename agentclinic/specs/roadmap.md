@@ -17,13 +17,14 @@
   - [Phase 12: Staff dashboard](#phase-12-staff-dashboard)
   - [Phase 13: Dashboard counts](#phase-13-dashboard-counts)
   - [Phase 14: Home page polish](#phase-14-home-page-polish)
-  - [Phase 15: Responsive and accessibility pass](#phase-15-responsive-and-accessibility-pass)
+  - [Phase 15: Accessibility pass and responsive audit](#phase-15-accessibility-pass-and-responsive-audit)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Roadmap
 
 Each phase ships one visible, runnable change. Finish and test a phase before starting the next.
+Every phase ships responsive pages that follow the rules in `specs/tech-stack.md`.
 
 ## Phase 1: Hello clinic
 
@@ -41,6 +42,7 @@ Vitest, the tests for `/`, and `npm test` shipped with phase 1. From phase 3 on,
 ## Phase 3: Navigation and design tokens
 
 Add navigation to the shared layout. Extend the stylesheet with design tokens, light mode, and dark mode.
+At 320px the navigation wraps onto more lines without JavaScript.
 
 ## Phase 4: Agent list
 
@@ -65,6 +67,7 @@ Add therapies. Show `/therapies` and `/therapies/:id`. Each ailment page lists t
 ## Phase 9: Booking form
 
 Add a form at `/appointments/new` to pick an agent, an ailment, a therapy, and a time slot. Validate input on the server and show errors next to each field.
+On narrow screens the fields stack and fill the width.
 
 ## Phase 10: Booking confirmation
 
@@ -77,15 +80,18 @@ Reject a booking when the time slot is taken. Show the next free slot.
 ## Phase 12: Staff dashboard
 
 Show today's appointments at `/dashboard` with agent, ailment, and therapy.
+On narrow screens the appointments table scrolls inside its own container.
 
 ## Phase 13: Dashboard counts
 
 Add counts to the dashboard: appointments today, agents by ailment, most booked therapies.
+The count cards stack on narrow screens and sit in a row on wide ones.
 
 ## Phase 14: Home page polish
 
 Turn the home page into a landing page with the clinic pitch, a featured ailment, and a "Book an appointment" button.
 
-## Phase 15: Responsive and accessibility pass
+## Phase 15: Accessibility pass and responsive audit
 
-Check every page at phone width. Fix contrast, focus styles, labels, and heading order.
+Fix contrast, focus styles, labels, and heading order.
+Check every page at 320px, 768px, and 1280px again, and fix any regressions.

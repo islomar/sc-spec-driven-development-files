@@ -39,6 +39,7 @@ AgentClinic is a teaching and demo project. It is built for:
 - An agent goes from the home page to a booked appointment in under a minute.
 - Staff answer "who is coming in today and why" from the dashboard without searching.
 - The site loads fast and looks good in a current version of Chrome, Firefox, Safari, and Edge.
+- Every page works on a phone, a tablet, and a desktop screen, from 320px wide and up, with no horizontal scroll.
 - The site stays up and behaves predictably. Every feature ships with tests.
 
 ## Stakeholder goals

@@ -10,6 +10,7 @@
   - [5. Build the minimal home page](#5-build-the-minimal-home-page)
   - [6. Add the layout and stylesheet](#6-add-the-layout-and-stylesheet)
   - [7. Add Vitest tests](#7-add-vitest-tests)
+  - [8. Make the layout responsive](#8-make-the-layout-responsive)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -92,3 +93,18 @@ With `npm start`, `curl -s localhost:3000` returns HTML containing `<header`, `<
 6. Create `src/app.test.ts`. Use `app.request()` to cover the home page content checks, the `/styles.css` check, and a 404 for an unknown route from `validation.md`.
 
 Check: `npm test` passes, `npx tsc --noEmit` passes, and `npm run build` creates `dist/` with no test files.
+
+## 8. Make the layout responsive
+
+1. In `public/styles.css`, add a comment that states the mobile-first approach.
+2. Set `box-sizing: border-box` on all elements, and `overflow-wrap: break-word` on `body`.
+3. Set `min-height: 100dvh` on `body`, after `min-height: 100vh` as a fallback.
+4. Cap images and media at `max-width: 100%`.
+5. Give header, main, and footer fluid inline padding: `clamp(1rem, 4vw, 2rem)`.
+6. Center the content of header, main, and footer in one column at most `65ch` wide.
+   Set it through the inline padding on those three elements, so the backgrounds stay full width and every heading and paragraph lines up.
+7. Size the `h1` with `clamp()`.
+8. Add one `@media (min-width: 48rem)` query that adds vertical space to `main`.
+9. In `src/app.test.ts`, assert the exact viewport meta tag: `width=device-width, initial-scale=1`.
+
+Check: `npm test` passes. In a browser at 320px, 768px, and 1280px, the page has no horizontal scroll and the text lines stay within 65 characters.

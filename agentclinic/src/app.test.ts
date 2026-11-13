@@ -19,7 +19,9 @@ describe('GET /', () => {
     expect(html).toMatch(/^<!DOCTYPE html>/)
     expect(html).toContain('<html lang="en">')
     expect(html).toContain('<meta charset="utf-8"/>')
-    expect(html).toMatch(/<meta name="viewport" content="[^"]+"\/>/)
+    expect(html).toContain(
+      '<meta name="viewport" content="width=device-width, initial-scale=1"/>',
+    )
     expect(html).toMatch(/<meta name="description" content="[^"]+"\/>/)
   })
 

@@ -34,7 +34,7 @@ Phase 1 can merge when every check below passes.
 
 `curl -s localhost:3000` returns HTML that contains the following (automated):
 
-1. `<html lang="en">`, a UTF-8 charset meta tag, a viewport meta tag, and a meta description.
+1. `<html lang="en">`, a UTF-8 charset meta tag, `<meta name="viewport" content="width=device-width, initial-scale=1"/>`, and a meta description.
 2. `<title>AgentClinic</title>` and `<h1>AgentClinic</h1>`.
 3. The tagline "Relief for AI agents from their humans."
 4. A paragraph that mentions diagnosing an ailment, recommending a therapy, and booking an appointment.
@@ -54,8 +54,10 @@ Phase 1 can merge when every check below passes.
 
 1. Open `http://localhost:3000` in a current browser. The page shows "AgentClinic" as a heading and in the tab title.
 2. The tagline, paragraph, and ailment list are visible and readable with and without CSS.
-3. At phone width (375px), the text wraps and the page has no horizontal scroll.
-4. The browser console shows no errors.
+3. At 320px, 768px, and 1280px, `document.documentElement.scrollWidth <= window.innerWidth` in the console, and the text wraps.
+4. At 1280px, the paragraph lines stay within 65 characters. The header, the headings, the paragraphs, and the footer text share one centered left edge.
+5. At 320px, the `h1` is smaller than at 1280px.
+6. The browser console shows no errors.
 
 ## Scope
 

@@ -36,6 +36,7 @@ In scope:
 - A `Layout` component in `src/components/layout.tsx` holds the HTML document and renders three subcomponents: `Header`, `Main`, and `Footer`.
   Each subcomponent lives in its own file: `header.tsx`, `main.tsx`, and `footer.tsx` in `src/components/`.
 - A stylesheet at `public/styles.css`, served at `/styles.css` and linked from `Layout`.
+- A responsive layout that follows `specs/tech-stack.md`: mobile-first, readable at 320px, 768px, and 1280px, with no horizontal scroll.
 - `npm run dev` starts the server with `tsx watch` and reloads on change.
 - `npm run build` compiles to `dist/`.
 - `npm start` runs the compiled server from `dist/`.
@@ -67,11 +68,13 @@ Out of scope:
 | Component files | One component per file in `src/components/` | Later phases change the header and footer on their own, such as adding navigation in phase 3. |
 | Local imports | Use the `.js` extension, e.g. `./pages/home.js` | `NodeNext` requires it for ESM output. |
 | Stylesheet location | `public/styles.css`, outside `src/` | `tsc` does not copy CSS to `dist/`. |
+| Responsive approach | Mobile-first CSS, one `min-width: 48rem` media query, fluid padding and `h1` size with `clamp()`, one centered content column capped at 65 characters | Rules from `specs/tech-stack.md`. The page has no wide content yet, so one breakpoint is enough. |
 | Stylesheet delivery | `serveStatic` from `@hono/node-server/serve-static`, plus a `<link>` tag | Node.js cannot `import` a `.css` file. |
 
 ## Constraints
 
 - `tsc --noEmit` passes with `strict` mode on.
 - No client JavaScript on the page.
+- No horizontal page scroll at any width from 320px up.
 - No dependencies beyond the five listed above.
 - `npm test` passes.

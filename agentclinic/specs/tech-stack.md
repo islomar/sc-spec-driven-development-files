@@ -7,6 +7,7 @@
   - [Framework choice: Hono](#framework-choice-hono)
   - [Rendering](#rendering)
   - [Styling](#styling)
+    - [Responsive design](#responsive-design)
   - [Data](#data)
   - [Testing](#testing)
   - [Quality rules](#quality-rules)
@@ -23,7 +24,7 @@
 | Runtime | Node.js LTS |
 | Web framework | Hono |
 | Rendering | Server-side HTML with Hono JSX |
-| Styling | Plain CSS with custom properties, one stylesheet |
+| Styling | Plain CSS with custom properties, one stylesheet, responsive and mobile-first |
 | Database | SQLite, through `better-sqlite3`. Plain SQL, no ORM. |
 | Client JavaScript | None by default. Add small progressive enhancements only where a feature needs them. |
 | Testing | Vitest, using Hono's `app.request()` for route tests |
@@ -57,6 +58,21 @@ Pages render on the server as complete HTML. Forms post to the server and the se
 One CSS file with design tokens (colors, spacing, type scale) as custom properties. Layouts use CSS grid and flexbox.
 Target the current versions of Chrome, Firefox, Safari, and Edge. Support light and dark mode with `prefers-color-scheme`.
 
+### Responsive design
+
+Every page works at any width from 320px up.
+
+- Mobile-first. Base styles target 320px. `min-width` media queries in `rem` add layout for wider screens.
+- Check widths: 320px (small phone), 768px (tablet), and 1280px (desktop). Check each page at all three.
+- No horizontal page scroll at any width from 320px up.
+- Reading text stays within 65 characters per line.
+- Spacing and type scale with the viewport through `rem` and `clamp()`. No fixed pixel widths on layout containers.
+- Links, buttons, and form fields have a touch target of at least 44 by 44 CSS pixels.
+- Wide content, such as tables, scrolls inside its own container. The page itself never scrolls sideways.
+- Images and media never exceed their container width.
+- Responsive behavior is CSS only. Navigation wraps or stacks on narrow screens without JavaScript.
+- Every page has `<meta name="viewport" content="width=device-width, initial-scale=1">`.
+
 ## Data
 
 AgentClinic stores data in SQLite.
@@ -81,7 +97,7 @@ Rejected:
 Vitest tests check each feature against its `validation.md`.
 
 - Each check in `validation.md` that does not need a running server or a browser becomes a Vitest test.
-  Checks that need one stay manual, such as dev server reload, `npm start`, phone width, and console errors.
+  Checks that need one stay manual, such as dev server reload, `npm start`, the responsive checks at each check width, and console errors.
 - Route tests call `app.request()` and assert on the status, headers, and HTML.
   They do not start a server.
 - `src/app.tsx` builds and exports the Hono app.
@@ -98,3 +114,4 @@ Vitest tests check each feature against its `validation.md`.
 - `tsc --noEmit` passes with no errors.
 - Every route has at least one test.
 - `npm test` passes before each phase is marked done.
+- Every page passes the responsive checks at 320px, 768px, and 1280px before the phase closes.

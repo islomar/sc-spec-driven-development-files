@@ -4,21 +4,27 @@
 
 - [Changelog](#changelog)
   - [2026-11-13](#2026-11-13)
+  - [2026-11-10](#2026-11-10)
   - [2026-10-27](#2026-10-27)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Changelog
 
-<!-- changelog: last-commit bff13225291a0613bfdc7657dca5f6babf8bd4b1 -->
+<!-- changelog: last-commit f2b77e5c022185b06c568911d049a23661d0fdd7 -->
 
 ## 2026-11-13
 
+- Keep changelog dates in order when an older commit arrives from a merge
 - Add a `/changelog` skill that keeps this changelog up to date
 - Record the lesson 08 prompts
 - Make every page responsive, from 320px wide up
 - Add Vitest tests for the home page, the stylesheet, and unknown routes, run with `npm test`
 - Add a shared layout with header, main, and footer, and a stylesheet
+
+## 2026-11-10
+
+- Use the default table of contents title in the specs
 
 ## 2026-10-27
 

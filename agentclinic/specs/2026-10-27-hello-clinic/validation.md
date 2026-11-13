@@ -14,12 +14,15 @@
 
 # Phase 1: Hello clinic. Validation
 
-Phase 1 can merge when every check below passes. Automated tests start in phase 2.
+Phase 1 can merge when every check below passes.
+
+`npm test` covers the checks marked (automated). The other checks need a running server or a browser and stay manual.
 
 ## Static checks
 
 1. `npx tsc --noEmit` exits with code 0.
-2. `npm run build` exits with code 0 and creates `dist/index.js`.
+2. `npm run build` exits with code 0 and creates `dist/index.js` and `dist/app.js`. `dist/` has no `*.test.js` files.
+3. `npm test` exits with code 0.
 
 ## Dev server
 
@@ -29,7 +32,7 @@ Phase 1 can merge when every check below passes. Automated tests start in phase 
 
 ## Home page content
 
-`curl -s localhost:3000` returns HTML that contains:
+`curl -s localhost:3000` returns HTML that contains the following (automated):
 
 1. `<html lang="en">`, a UTF-8 charset meta tag, a viewport meta tag, and a meta description.
 2. `<title>AgentClinic</title>` and `<h1>AgentClinic</h1>`.
@@ -40,7 +43,7 @@ Phase 1 can merge when every check below passes. Automated tests start in phase 
 7. `<header>`, `<main>`, and `<footer>` elements, with the `<h1>` inside `<main>`.
 8. `<link rel="stylesheet" href="/styles.css"/>` in `<head>`.
 
-`curl -sI localhost:3000/styles.css` returns 200 with `content-type: text/css`.
+`curl -sI localhost:3000/styles.css` returns 200 with `content-type: text/css` (automated).
 
 ## Production server
 
@@ -57,10 +60,12 @@ Phase 1 can merge when every check below passes. Automated tests start in phase 
 ## Scope
 
 1. `package.json` dependencies are exactly `hono` and `@hono/node-server`.
-2. Dev dependencies are exactly `typescript`, `tsx`, and `@types/node`.
+2. Dev dependencies are exactly `typescript`, `tsx`, `@types/node`, and `vitest`.
 3. `git status` shows no `dist/` or `node_modules/` files.
-4. No routes exist besides `GET /` and the static `/styles.css`.
-5. `src/index.tsx` holds app setup and routes only.
+4. No routes exist besides `GET /` and the static `/styles.css`. An unknown route such as `/agents` returns 404 (automated).
+5. `src/index.tsx` only starts the server.
+   `src/app.tsx` holds app setup and routes only.
+   `src/app.test.ts` holds the tests.
    Page content lives in `src/pages/home.tsx`.
    The HTML document lives in `src/components/layout.tsx`.
    `Header`, `Main`, and `Footer` each live in their own file: `src/components/header.tsx`, `src/components/main.tsx`, and `src/components/footer.tsx`.

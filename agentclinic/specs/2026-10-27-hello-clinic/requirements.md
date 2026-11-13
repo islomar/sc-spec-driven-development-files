@@ -16,7 +16,7 @@
 
 Phase 1 of `specs/roadmap.md`. The repo has a bare TypeScript setup: `package.json` with only `typescript`, a `tsconfig.json` targeting ES2016 and CommonJS, and `src/index.ts` that logs one line.
 
-This phase puts the stack from `specs/tech-stack.md` in place and ships a minimal home page that tells a visitor what AgentClinic is. Later phases build on this setup.
+This phase puts the stack from `specs/tech-stack.md` in place, including Vitest, and ships a minimal home page that tells a visitor what AgentClinic is. Later phases build on this setup.
 
 The mission names conference booth demos as a target. The phase must stay small enough to build live in a few minutes.
 
@@ -25,8 +25,8 @@ The mission names conference booth demos as a target. The phase must stay small 
 In scope:
 
 - Install `hono` and `@hono/node-server` as dependencies.
-- Install `tsx` and `@types/node` as dev dependencies.
-- Replace `src/index.ts` with `src/index.tsx`, a Hono app.
+- Install `tsx`, `@types/node`, and `vitest` as dev dependencies.
+- Replace `src/index.ts` with two files: `src/app.tsx` builds and exports the Hono app, and `src/index.tsx` starts the server.
 - `GET /` returns a minimal home page rendered with Hono JSX, defined in `src/pages/home.tsx`. The page has:
   - A complete HTML document: `lang="en"`, UTF-8 charset, viewport meta tag, meta description.
   - The title "AgentClinic" and an `<h1>` with the text "AgentClinic".
@@ -39,11 +39,12 @@ In scope:
 - `npm run dev` starts the server with `tsx watch` and reloads on change.
 - `npm run build` compiles to `dist/`.
 - `npm start` runs the compiled server from `dist/`.
+- `npm test` runs Vitest tests for `/`, `/styles.css`, and an unknown route, using `app.request()`.
+  The tests cover each check in `validation.md` that needs no running server or browser.
 - Update `tsconfig.json` for ESM and Hono JSX.
 
 Out of scope:
 
-- Tests and Vitest. Phase 2.
 - Navigation, design tokens, and dark mode. Phase 3.
 - Links to pages that do not exist yet, such as `/agents` or a booking button. Phases 4 and 14.
 - Any other route, including a health check. `/styles.css` is the only static file served.
@@ -58,8 +59,11 @@ Out of scope:
 | JSX settings | `jsx`: `react-jsx`, `jsxImportSource`: `hono/jsx` | Hono JSX without React. |
 | Node.js adapter | `@hono/node-server` | Official adapter for running Hono on Node.js. |
 | Port | `PORT` environment variable, default `3000` | Lets a booth machine pick a free port. |
-| Entry file | `src/index.tsx` | JSX needs the `.tsx` extension. |
-| Page files | One component per page in `src/pages/` | Keeps the entry file to app setup and routes. Later phases add pages the same way. |
+| Entry file | `src/index.tsx` starts the server | Keeps the entry file to `serve()` and the port. |
+| App file | `src/app.tsx` exports the Hono app and its routes | Tests import the app without starting a server. |
+| Test files | `*.test.ts` next to the code they test | Matches `specs/tech-stack.md`. |
+| Build config | `npm run build` uses `tsconfig.build.json`, which excludes test files | `dist/` holds no tests. `tsc --noEmit` still type-checks them. |
+| Page files | One component per page in `src/pages/` | Keeps the app file to setup and routes. Later phases add pages the same way. |
 | Component files | One component per file in `src/components/` | Later phases change the header and footer on their own, such as adding navigation in phase 3. |
 | Local imports | Use the `.js` extension, e.g. `./pages/home.js` | `NodeNext` requires it for ESM output. |
 | Stylesheet location | `public/styles.css`, outside `src/` | `tsc` does not copy CSS to `dist/`. |
@@ -69,4 +73,5 @@ Out of scope:
 
 - `tsc --noEmit` passes with `strict` mode on.
 - No client JavaScript on the page.
-- No dependencies beyond the four listed above.
+- No dependencies beyond the five listed above.
+- `npm test` passes.

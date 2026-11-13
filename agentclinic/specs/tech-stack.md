@@ -80,13 +80,18 @@ Rejected:
 
 Vitest tests check each feature against its `validation.md`.
 
-- Each check in `validation.md` that does not need a browser becomes a Vitest test.
-  Browser checks, such as phone width and console errors, stay manual.
+- Each check in `validation.md` that does not need a running server or a browser becomes a Vitest test.
+  Checks that need one stay manual, such as dev server reload, `npm start`, phone width, and console errors.
 - Route tests call `app.request()` and assert on the status, headers, and HTML.
   They do not start a server.
+- `src/app.tsx` builds and exports the Hono app.
+  `src/index.tsx` imports it and starts the server.
+  Tests import `src/app.tsx`, so they never open a port.
 - Test files sit next to the code they test, named `*.test.ts` or `*.test.tsx`.
 - `package.json` has a `test` script, `"test": "vitest run"`.
   `npm test` runs every test once and exits.
+- `npm run build` uses `tsconfig.build.json`, which excludes test files, so `dist/` holds no tests.
+  `tsc --noEmit` uses `tsconfig.json` and type-checks the tests too.
 
 ## Quality rules
 

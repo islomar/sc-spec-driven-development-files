@@ -9,6 +9,7 @@
   - [4. Add npm scripts](#4-add-npm-scripts)
   - [5. Build the minimal home page](#5-build-the-minimal-home-page)
   - [6. Add the layout and stylesheet](#6-add-the-layout-and-stylesheet)
+  - [7. Add Vitest tests](#7-add-vitest-tests)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -80,3 +81,14 @@ Check: every step in `validation.md` passes.
 
 Check: `npm run build` passes.
 With `npm start`, `curl -s localhost:3000` returns HTML containing `<header`, `<main`, `<footer`, and the stylesheet link, and `curl -sI localhost:3000/styles.css` returns 200 with `content-type: text/css`.
+
+## 7. Add Vitest tests
+
+1. Move the Hono app, the static middleware, and `GET /` from `src/index.tsx` to `src/app.tsx`. Export it as `app`.
+2. Reduce `src/index.tsx` to: import `app` from `./app.js`, read `PORT`, call `serve`.
+3. `npm install -D vitest`.
+4. Add the `test` script: `vitest run`.
+5. Create `tsconfig.build.json`. It extends `tsconfig.json` and excludes `src/**/*.test.ts` and `src/**/*.test.tsx`. Change the `build` script to `tsc -p tsconfig.build.json`.
+6. Create `src/app.test.ts`. Use `app.request()` to cover the home page content checks, the `/styles.css` check, and a 404 for an unknown route from `validation.md`.
+
+Check: `npm test` passes, `npx tsc --noEmit` passes, and `npm run build` creates `dist/` with no test files.

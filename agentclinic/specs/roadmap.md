@@ -30,10 +30,13 @@ Each phase ships one visible, runnable change. Finish and test a phase before st
 Status: complete.
 
 Install Hono and `tsx`. Serve a home page at `/` that says "AgentClinic", with a shared layout (header, main, footer) and a linked stylesheet. Add `npm run dev`.
+Add Vitest tests for `/` and `/styles.css` that use `app.request()`. Add `npm test`.
 
 ## Phase 2: Test harness
 
-Add Vitest. Write a test for `/` that uses `app.request()`. Add `npm test`.
+Status: complete, merged into phase 1.
+
+Vitest, the tests for `/`, and `npm test` shipped with phase 1. From phase 3 on, each phase adds tests for its own routes.
 
 ## Phase 3: Navigation and design tokens
 

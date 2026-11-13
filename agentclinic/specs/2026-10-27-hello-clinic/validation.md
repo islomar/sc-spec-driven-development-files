@@ -36,17 +36,21 @@ Phase 1 can merge when every check below passes. Automated tests start in phase 
 3. The tagline "Relief for AI agents from their humans."
 4. A paragraph that mentions diagnosing an ailment, recommending a therapy, and booking an appointment.
 5. A list with three items: context overload, contradictory instructions, and "just one more change".
-6. No `<script>` tags and no links.
+6. No `<script>` tags and no `<a>` links.
+7. `<header>`, `<main>`, and `<footer>` elements, with the `<h1>` inside `<main>`.
+8. `<link rel="stylesheet" href="/styles.css"/>` in `<head>`.
+
+`curl -sI localhost:3000/styles.css` returns 200 with `content-type: text/css`.
 
 ## Production server
 
-1. `npm start` serves the same page from `dist/`.
+1. `npm start` serves the same page from `dist/`, and `/styles.css` returns 200.
 2. `PORT=4000 npm start` serves the page on port 4000.
 
 ## Browser
 
 1. Open `http://localhost:3000` in a current browser. The page shows "AgentClinic" as a heading and in the tab title.
-2. The tagline, paragraph, and ailment list are visible and readable without CSS.
+2. The tagline, paragraph, and ailment list are visible and readable with and without CSS.
 3. At phone width (375px), the text wraps and the page has no horizontal scroll.
 4. The browser console shows no errors.
 
@@ -55,5 +59,8 @@ Phase 1 can merge when every check below passes. Automated tests start in phase 
 1. `package.json` dependencies are exactly `hono` and `@hono/node-server`.
 2. Dev dependencies are exactly `typescript`, `tsx`, and `@types/node`.
 3. `git status` shows no `dist/` or `node_modules/` files.
-4. No routes exist besides `GET /`.
-5. `src/index.tsx` holds app setup and routes only. Page markup lives in `src/pages/home.tsx`.
+4. No routes exist besides `GET /` and the static `/styles.css`.
+5. `src/index.tsx` holds app setup and routes only.
+   Page content lives in `src/pages/home.tsx`.
+   The HTML document lives in `src/components/layout.tsx`.
+   `Header`, `Main`, and `Footer` each live in their own file: `src/components/header.tsx`, `src/components/main.tsx`, and `src/components/footer.tsx`.

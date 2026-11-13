@@ -1,0 +1,30 @@
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  padding: 1rem;
+}
+
+.site-header,
+.site-footer {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.site-name {
+  margin: 0;
+  font-weight: 700;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.875rem;
+}

@@ -5,7 +5,7 @@
 - [Roadmap](#roadmap)
   - [Phase 1: Hello clinic](#phase-1-hello-clinic)
   - [Phase 2: Test harness](#phase-2-test-harness)
-  - [Phase 3: Layout and styles](#phase-3-layout-and-styles)
+  - [Phase 3: Navigation and design tokens](#phase-3-navigation-and-design-tokens)
   - [Phase 4: Agent list](#phase-4-agent-list)
   - [Phase 5: Agent detail](#phase-5-agent-detail)
   - [Phase 6: Ailment list and detail](#phase-6-ailment-list-and-detail)
@@ -27,15 +27,17 @@ Each phase ships one visible, runnable change. Finish and test a phase before st
 
 ## Phase 1: Hello clinic
 
-Install Hono and `tsx`. Serve a home page at `/` that says "AgentClinic". Add `npm run dev`.
+Status: complete.
+
+Install Hono and `tsx`. Serve a home page at `/` that says "AgentClinic", with a shared layout (header, main, footer) and a linked stylesheet. Add `npm run dev`.
 
 ## Phase 2: Test harness
 
 Add Vitest. Write a test for `/` that uses `app.request()`. Add `npm test`.
 
-## Phase 3: Layout and styles
+## Phase 3: Navigation and design tokens
 
-Add a shared layout with header, navigation, and footer. Add the stylesheet with design tokens, light mode, and dark mode.
+Add navigation to the shared layout. Extend the stylesheet with design tokens, light mode, and dark mode.
 
 ## Phase 4: Agent list
 

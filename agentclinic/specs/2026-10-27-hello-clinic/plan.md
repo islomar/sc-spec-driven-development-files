@@ -8,6 +8,7 @@
   - [3. Serve a hello page](#3-serve-a-hello-page)
   - [4. Add npm scripts](#4-add-npm-scripts)
   - [5. Build the minimal home page](#5-build-the-minimal-home-page)
+  - [6. Add the layout and stylesheet](#6-add-the-layout-and-stylesheet)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -63,3 +64,19 @@ Check: `npm run build` creates `dist/index.js`, and `npm start` serves the hello
 4. In `src/index.tsx`, import `HomePage` from `./pages/home.js` and render it at `GET /`.
 
 Check: every step in `validation.md` passes.
+
+## 6. Add the layout and stylesheet
+
+1. Create `public/styles.css` with base styles for the header, main, and footer. Keep it outside `src/`: `tsc` does not copy CSS to `dist/`, and Node.js cannot `import` a `.css` file.
+2. In `src/index.tsx`, import `serveStatic` from `@hono/node-server/serve-static` and serve `/styles.css` from `./public`.
+3. Create one file per component in `src/components/`:
+   - `header.tsx` exports `Header`: a `<header>` with the site name as plain text.
+   - `main.tsx` exports `Main`: a `<main>` that renders its children.
+   - `footer.tsx` exports `Footer`: a `<footer>` with one line of text.
+   - `layout.tsx` exports `Layout`: the complete HTML document, with `<Header />`, `<Main>`, and `<Footer />` in `<body>`.
+     It imports the three subcomponents from `./header.js`, `./main.js`, and `./footer.js`.
+4. Move the doctype, `<html>`, and `<head>` from `HomePage` to `Layout`. Add `<link rel="stylesheet" href="/styles.css" />` to `<head>`.
+5. In `src/pages/home.tsx`, wrap the page content in `Layout`. The page keeps the only `<h1>`.
+
+Check: `npm run build` passes.
+With `npm start`, `curl -s localhost:3000` returns HTML containing `<header`, `<main`, `<footer`, and the stylesheet link, and `curl -sI localhost:3000/styles.css` returns 200 with `content-type: text/css`.

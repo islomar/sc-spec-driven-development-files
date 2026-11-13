@@ -33,6 +33,9 @@ In scope:
   - The tagline "Relief for AI agents from their humans."
   - One paragraph on what the clinic does: diagnose the ailment, recommend a therapy, book an appointment.
   - A list of three common ailments: context overload, contradictory instructions, and "just one more change".
+- A `Layout` component in `src/components/layout.tsx` holds the HTML document and renders three subcomponents: `Header`, `Main`, and `Footer`.
+  Each subcomponent lives in its own file: `header.tsx`, `main.tsx`, and `footer.tsx` in `src/components/`.
+- A stylesheet at `public/styles.css`, served at `/styles.css` and linked from `Layout`.
 - `npm run dev` starts the server with `tsx watch` and reloads on change.
 - `npm run build` compiles to `dist/`.
 - `npm start` runs the compiled server from `dist/`.
@@ -41,9 +44,9 @@ In scope:
 Out of scope:
 
 - Tests and Vitest. Phase 2.
-- Layout, header, navigation, footer, and CSS. Phase 3.
+- Navigation, design tokens, and dark mode. Phase 3.
 - Links to pages that do not exist yet, such as `/agents` or a booking button. Phases 4 and 14.
-- Any other route, including a health check.
+- Any other route, including a health check. `/styles.css` is the only static file served.
 - SQLite and seed data.
 
 ## Decisions
@@ -57,7 +60,10 @@ Out of scope:
 | Port | `PORT` environment variable, default `3000` | Lets a booth machine pick a free port. |
 | Entry file | `src/index.tsx` | JSX needs the `.tsx` extension. |
 | Page files | One component per page in `src/pages/` | Keeps the entry file to app setup and routes. Later phases add pages the same way. |
+| Component files | One component per file in `src/components/` | Later phases change the header and footer on their own, such as adding navigation in phase 3. |
 | Local imports | Use the `.js` extension, e.g. `./pages/home.js` | `NodeNext` requires it for ESM output. |
+| Stylesheet location | `public/styles.css`, outside `src/` | `tsc` does not copy CSS to `dist/`. |
+| Stylesheet delivery | `serveStatic` from `@hono/node-server/serve-static`, plus a `<link>` tag | Node.js cannot `import` a `.css` file. |
 
 ## Constraints
 

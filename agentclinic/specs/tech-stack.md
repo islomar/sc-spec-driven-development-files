@@ -8,6 +8,7 @@
   - [Rendering](#rendering)
   - [Styling](#styling)
   - [Data](#data)
+  - [Testing](#testing)
   - [Quality rules](#quality-rules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -74,6 +75,18 @@ Rejected:
 - **`node:sqlite`**: built into Node.js and needs no extra package, but still experimental on Node.js 22.
 - **An ORM such as Drizzle or Prisma**: adds a schema language and code generation. Plain SQL is easier to follow in a demo.
 - **PostgreSQL**: needs a running server. SQLite works with no setup on a student laptop or a booth machine.
+
+## Testing
+
+Vitest tests check each feature against its `validation.md`.
+
+- Each check in `validation.md` that does not need a browser becomes a Vitest test.
+  Browser checks, such as phone width and console errors, stay manual.
+- Route tests call `app.request()` and assert on the status, headers, and HTML.
+  They do not start a server.
+- Test files sit next to the code they test, named `*.test.ts` or `*.test.tsx`.
+- `package.json` has a `test` script, `"test": "vitest run"`.
+  `npm test` runs every test once and exits.
 
 ## Quality rules
 

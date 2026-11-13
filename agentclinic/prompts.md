@@ -41,3 +41,50 @@ Add a target audience to the mission:
 ## Prompt 5
 
 In tech stack add that we use SQLite.
+
+## Lesson 05 — Prompts
+
+### Prompt 1
+
+Find the next phase on specs/roadmap.md and make a branch, ask me about the feature spec.
+Create:
+
+- A new directory YYYY-MM-DD-feature-name under specs for this feature work
+- In there:
+- `plan.md` as a series of numbered task groups.
+- `requirements.md` for the scope, decisions, context
+- `validation.md` for how to know the implementation succeeded and can be merged
+
+Refer to specs/mission.md and specs/tech-stack.md for guidance.
+
+Important: You *must* use your AskUserQuestion tool, grouped on these 3, before writing to disk.
+
+### Prompt 2
+
+Add a task group to the plan to have a minimal AgentClinic home page and update the rest of the feature spec to be in sync.
+
+## Lesson 06 — Prompts
+
+### Prompt 1
+
+Implement the remaining task groups.
+
+## Lesson 07 — Prompts
+
+### Prompt 1
+
+Update `specs/2026-03-30-hello-hono/plan.md` and implementation of a main layout component with a header/main/footer as three subcomponents. Make a CSS file, import it, and link to it.
+
+### Prompt 2
+
+Update the spec to capture that the header, footer, and main components should be in their own files.
+
+### Prompt 3
+
+Mark this specs/roadmap.md phase as complete, commit this work, switch to main, and merge this branch, then delete it.
+
+## Lesson 08 — Prompts
+
+### Prompt 1
+
+Update this tech-stack.md to capture that we want to use Vitest tests for validation and write a script in package.json.

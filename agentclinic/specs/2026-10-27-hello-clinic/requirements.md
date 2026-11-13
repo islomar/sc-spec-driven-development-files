@@ -46,8 +46,8 @@ In scope:
 
 Out of scope:
 
-- Navigation, design tokens, and dark mode. Phase 3.
-- Links to pages that do not exist yet, such as `/agents` or a booking button. Phases 4 and 14.
+- Navigation, design tokens, and dark mode. Phase 2.
+- Links to pages that do not exist yet, such as `/agents` or a booking button. Phases 2 and 11.
 - Any other route, including a health check. `/styles.css` is the only static file served.
 - SQLite and seed data.
 
@@ -65,7 +65,7 @@ Out of scope:
 | Test files | `*.test.ts` next to the code they test | Matches `specs/tech-stack.md`. |
 | Build config | `npm run build` uses `tsconfig.build.json`, which excludes test files | `dist/` holds no tests. `tsc --noEmit` still type-checks them. |
 | Page files | One component per page in `src/pages/` | Keeps the app file to setup and routes. Later phases add pages the same way. |
-| Component files | One component per file in `src/components/` | Later phases change the header and footer on their own, such as adding navigation in phase 3. |
+| Component files | One component per file in `src/components/` | Later phases change the header and footer on their own, such as adding navigation in phase 2. |
 | Local imports | Use the `.js` extension, e.g. `./pages/home.js` | `NodeNext` requires it for ESM output. |
 | Stylesheet location | `public/styles.css`, outside `src/` | `tsc` does not copy CSS to `dist/`. |
 | Responsive approach | Mobile-first CSS, one `min-width: 48rem` media query, fluid padding and `h1` size with `clamp()`, one centered content column capped at 65 characters | Rules from `specs/tech-stack.md`. The page has no wide content yet, so one breakpoint is enough. |

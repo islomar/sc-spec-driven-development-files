@@ -84,7 +84,7 @@ AgentClinic stores data in SQLite.
 - Tests use an in-memory database (`:memory:`). Each test starts from a fresh schema.
 - Routes and views never write SQL. They call a repository module, and only the repository module talks to the database.
 
-Phase 1 to phase 6 of the roadmap use in-memory seed data behind the repository module. Phase 7 moves the repository module to SQLite.
+Phase 1 to phase 3 of the roadmap use in-memory seed data behind the repository module. Phase 4 moves the repository module to SQLite.
 
 Rejected:
 
